@@ -12,12 +12,14 @@
       }
     ]
   ],
-  "plugins": ["transform-class-properties", "external-helpers"],
+  "plugins": ["transform-class-properties"],
   "env": {
     "test": {
       "plugins": ["transform-es2015-modules-commonjs"]
     },
-    "development": {},
+    "development": {
+      "plugins": ["external-helpers"]
+    },
     "production": {}
   }
 }
