@@ -4,15 +4,21 @@
   "description": "Simple react component to keep the scroll of the page and to restore it if the user clicks on the back button of its browser",
   "main": "./dist/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "flow": "node_modules/.bin/flow",
-    "prepublish": "webpack --config webpack.config.js"
+    "build": "rollup -c",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipatate/react-router-scroll-memory.git"
   },
-  "keywords": ["react", "router", "scroll", "history"],
+  "keywords": [
+    "react",
+    "router",
+    "scroll",
+    "history"
+  ],
   "author": "Faramaz Patrick",
   "license": "ISC",
   "bugs": {
@@ -26,6 +32,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -41,6 +48,8 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.2.1",
     "flow-bin": "^0.53.1",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.6.1",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1"

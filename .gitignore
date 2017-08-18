@@ -1,3 +1,4 @@
+dist/
 flow-typed/
 npm-debug.log
 node_modules
