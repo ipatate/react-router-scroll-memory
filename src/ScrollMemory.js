@@ -58,7 +58,6 @@ class ScrollMemory extends Component {
     });
   }
   render(): null {
-    // return Children.only(this.props.children);
     return null;
   }
 }

@@ -3,7 +3,7 @@ import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
 
 export default {
-  entry: 'src/index.js',
+  entry: 'src/ScrollMemory.js',
   format: 'cjs',
   plugins: [
     resolve(),
@@ -13,5 +13,5 @@ export default {
     uglify(),
   ],
   external: ['react', 'react-router-dom'],
-  dest: 'dist/bundle.js',
+  dest: 'dist/ScrollMemory.min.js',
 };
