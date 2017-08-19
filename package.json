@@ -1,6 +1,6 @@
 {
   "name": "react-router-scroll-memory",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple react component to keep the scroll of the page and to restore it if the user clicks on the back button of its browser",
   "main": "./dist/bundle.js",
   "scripts": {
