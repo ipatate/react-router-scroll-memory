@@ -1,7 +1,7 @@
 {
   "name": "react-router-scroll-memory",
-  "version": "0.0.7",
-  "description": "Simple react component to keep the scroll of the page and to restore it if the user clicks on the back button of its browser",
+  "version": "0.0.8",
+  "description": "For React Router V4. React component to keep the scroll of the page and to restore it if the user clicks on the previous button of its browser",
   "main": "./dist/ScrollMemory.min.js",
   "scripts": {
     "test": "jest",
@@ -13,12 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/ipatate/react-router-scroll-memory.git"
   },
-  "keywords": [
-    "react",
-    "router",
-    "scroll",
-    "history"
-  ],
+  "keywords": ["react", "router", "scroll", "history"],
   "author": "Faramaz Patrick",
   "license": "ISC",
   "bugs": {
