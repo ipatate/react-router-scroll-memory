@@ -10,13 +10,26 @@ I did this package because I was frustrated that the new react router (4) does n
 
 only work with react and react router v4
 
-#### import component in your main page.
+#### Npm page
+
+[https://www.npmjs.com/package/react-router-scroll-memory](https://www.npmjs.com/package/react-router-scroll-memory)
+
+#### Installation
+
+ * install package
+
+         $ npm i -S react-router-scroll-memory
+
+
+
+
+ * import component in your main page.
 
 ```javascript
 import ScrollMemory from 'react-router-scroll-memory';
-```
+````
 
-#### add the component after the Router.
+* add the component after the Router.
 
 ```jsx
   <BrowserRouter>
