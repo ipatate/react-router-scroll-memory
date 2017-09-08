@@ -18,7 +18,7 @@ only work with react and react router v4
 
  * install package
 
-         $ npm i -S react-router-scroll-memory
+    $ npm i -S react-router-scroll-memory
 
 
 
