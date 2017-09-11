@@ -3,11 +3,15 @@
 exports[`3 url insert 1`] = `
 Array [
   Object {
-    "pathname": "/bar",
+    "pathname": "/",
     "scroll": 0,
   },
   Object {
     "pathname": "/foo",
+    "scroll": 0,
+  },
+  Object {
+    "pathname": "/bar",
     "scroll": 0,
   },
 ]

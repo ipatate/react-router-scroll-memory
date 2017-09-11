@@ -58,9 +58,9 @@ class ScrollMemory extends React.Component<Props> {
       scrollTo(nextFind.scroll);
     }
   }
-  detectPop: () => void;
-  requestID: number;
-  url: Array<Object>;
+  detectPop: () => void; // eslint-disable-line
+  requestID: number; // eslint-disable-line
+  url: Array<Object>; // eslint-disable-line
   render(): null {
     return null;
   }
