@@ -1,6 +1,6 @@
 import { getIndexPage } from '../src/utils/utils';
 
-test('getPage', () => {
+test('getPage, search object by pathname', () => {
   const url = [
     { pathname: '/', scroll: 30 },
     { pathname: '/detail/3', scroll: 80 },

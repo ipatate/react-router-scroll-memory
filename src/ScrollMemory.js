@@ -1,28 +1,26 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { getIndexPage, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
+import { cleanOldUrl, isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
 
 type Props = {
   location: Object,
 };
-const limit = 10;
+const limit = 20;
 class ScrollMemory extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.detectPop = this.detectPop.bind(this);
+    // stock all pathname with scroll associate
     this.url = [];
     this.requestID = 0;
   }
   componentDidMount(): void {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', this.detectPop);
-    }
+    if (!isBrowser()) return;
+    window.addEventListener('popstate', this.detectPop);
   }
   componentWillReceiveProps(nextProps: Object): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
+    if (!isBrowser()) return;
     // actual is previous location before click on link
     const actual = this.props.location;
     // next is target location of the link
@@ -31,22 +29,23 @@ class ScrollMemory extends React.Component<Props> {
     // get scroll of the page before change location
     const scroll = getScrollPage();
     if (locationChanged) {
-      // catch the request id for cancel if necessary
       this.requestID = scrollTo(0);
       this.url = saveUrl(this.url, actual.pathname, scroll);
-      let index = getIndexPage(this.url, actual.pathname);
-      if (this.url.length > limit * 2) {
-        index = index - limit < 0 ? 0 : index - limit;
-        this.url.splice(index, limit);
-      }
+      // clean url in array from start for free memory usage
+      this.url = cleanOldUrl(this.url, limit);
     }
   }
   componentWillUnmount(): void {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('popstate', this.detectPop);
-    }
+    if (!isBrowser()) return;
+    window.removeEventListener('popstate', this.detectPop);
   }
+  /**
+   * callback for event popstate
+   *
+   * @memberof ScrollMemory
+   */
   detectPop(): void {
+    if (!isBrowser()) return;
     const pathname = window.location.pathname;
     const nextFind = getPage(this.url, pathname);
     if (this.requestID > 0) {
