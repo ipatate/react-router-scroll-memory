@@ -1,37 +1,63 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { saveUrl, getScrollPage, scrollTo } from './utils/utils';
+import { isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
 
 type Props = {
   location: Object,
 };
-const url: Array<Object> = [];
+const limit = 20;
 class ScrollMemory extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.scrollTo = 0;
+    this.detectPop = this.detectPop.bind(this);
+    // stock all pathname with scroll associate
+    this.url = [];
+    this.requestID = 0;
+  }
+  componentDidMount(): void {
+    if (!isBrowser()) return;
+    window.addEventListener('popstate', this.detectPop);
   }
   componentWillReceiveProps(nextProps: Object): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
+    if (!isBrowser()) return;
+    // actual is previous location before click on link
     const actual = this.props.location;
+    // next is target location of the link
     const next = nextProps.location;
     const locationChanged = next !== actual;
-
+    // get scroll of the page before change location
     const scroll = getScrollPage();
-    this.scrollTo = 0;
     if (locationChanged) {
-      const previous = url[0] || { pathname: '', scroll: 0 };
-      if (previous && previous.pathname === next.pathname) {
-        this.scrollTo = previous.scroll;
-      }
-      scrollTo(this.scrollTo);
-      saveUrl(url, actual.pathname, scroll);
+      this.requestID = scrollTo(0);
+      this.url = saveUrl(this.url, actual.pathname, scroll);
     }
   }
-  scrollTo: number;
+  componentWillUnmount(): void {
+    if (!isBrowser()) return;
+    window.removeEventListener('popstate', this.detectPop);
+  }
+  /**
+   * callback for event popstate
+   *
+   * @memberof ScrollMemory
+   */
+  detectPop(): void {
+    if (!isBrowser()) return;
+    const pathname = window.location.pathname;
+    const nextFind = getPage(this.url, pathname);
+    if (this.requestID > 0) {
+      // cancel scrollTo call by componentWillReceiveProps
+      window.cancelAnimationFrame(this.requestID);
+      this.requestID = 0;
+    }
+    if (nextFind) {
+      scrollTo(nextFind.scroll);
+    }
+  }
+  detectPop: () => void;
+  requestID: number;
+  url: Array<Object>;
   render(): null {
     return null;
   }

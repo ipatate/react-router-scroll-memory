@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPage 1`] = `
+Object {
+  "pathname": "/list",
+  "scroll": 80,
+}
+`;
+
+exports[`getPage 2`] = `
+Object {
+  "pathname": "/",
+  "scroll": 30,
+}
+`;
+
+exports[`getPage 3`] = `undefined`;

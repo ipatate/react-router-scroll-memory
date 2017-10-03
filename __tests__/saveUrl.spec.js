@@ -17,3 +17,13 @@ test('3 url insert', () => {
   url = saveUrl(url, '/bar');
   expect(url).toMatchSnapshot();
 });
+
+test('update url', () => {
+  let url = [];
+  url = saveUrl(url, '/foo', 20);
+  url = saveUrl(url, '/foo', 100);
+  url = saveUrl(url, '/bar');
+  url = saveUrl(url, '/bar', 320);
+  expect(url[0].scroll).toBe(100);
+  expect(url[1].scroll).toBe(320);
+});
