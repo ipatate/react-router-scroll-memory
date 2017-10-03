@@ -1,7 +1,8 @@
 {
   "name": "react-router-scroll-memory",
-  "version": "0.0.9",
-  "description": "For React Router V4. React component to keep the scroll of the page and to restore it if the user clicks on the previous button of its browser",
+  "version": "1.0.1-beta",
+  "description":
+    "For React Router V4. React component to keep the scroll of the page and to restore it if the user clicks on the previous button of its browser",
   "main": "./dist/ScrollMemory.min.js",
   "scripts": {
     "test": "jest",

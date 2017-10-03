@@ -6,7 +6,7 @@
  * @return {object}
  */
 export const getPage = (url: Array<PageInfo> = [], path: string): ?PageInfo => {
-  const lastIndex = url.map(x => x.pathname).lastIndexOf(path);
+  const lastIndex = url.map(x => x.pathname).indexOf(path);
   return lastIndex > -1 ? url[lastIndex] : undefined;
 };
 
@@ -17,7 +17,7 @@ export const getPage = (url: Array<PageInfo> = [], path: string): ?PageInfo => {
        * @return {number}
        */
 export const getIndexPage = (url: Array<PageInfo> = [], path: string): number =>
-  url.map(x => x.pathname).lastIndexOf(path);
+  url.map(x => x.pathname).indexOf(path);
 
 /**
        * save path and scroll in url array
@@ -28,6 +28,12 @@ export const getIndexPage = (url: Array<PageInfo> = [], path: string): number =>
        */
 export const saveUrl = (url: Array<PageInfo>, pathname: string = '', scroll: number = 0): Array<PageInfo> => {
   const u = Array.isArray(url) ? url : [];
+  // if path exist in array replace scroll value
+  const page = getIndexPage(u, pathname);
+  if (page > -1) {
+      u[page].scroll = scroll;
+      return u;
+  }
   // save actual url
   u.push({ pathname, scroll });
   return u;
@@ -60,18 +66,3 @@ export const scrollTo = (scrollnumber: number = 0): number =>
      * @return boolean
      */
 export const isBrowser = (): boolean => typeof window !== 'undefined';
-
-/**
-     * remove from array, the x (limit) and return exctracted element
-     * @param {array} url
-     * @param {number} limit
-     *
-     * @return array
-     */
-export const cleanOldUrl = (url: Array<PageInfo>, limit: number): Array<PageInfo> => {
-  const length = url.length;
-  if (length > limit) {
-    url.splice(-length, limit);
-  }
-  return url;
-};

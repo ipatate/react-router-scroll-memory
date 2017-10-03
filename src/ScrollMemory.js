@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { cleanOldUrl, isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
+import { isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
 
 type Props = {
   location: Object,
@@ -31,8 +31,6 @@ class ScrollMemory extends React.Component<Props> {
     if (locationChanged) {
       this.requestID = scrollTo(0);
       this.url = saveUrl(this.url, actual.pathname, scroll);
-      // clean url in array from start for free memory usage
-      this.url = cleanOldUrl(this.url, limit);
     }
   }
   componentWillUnmount(): void {
