@@ -9,7 +9,7 @@ The React Router V4 has no concept of router middlewares. The package react-rout
 
 You have solution in this page [https://reacttraining.com/react-router/web/guides/scroll-restoration](https://reacttraining.com/react-router/web/guides/scroll-restoration) for just scrolling to top on navigation on every transition. But if you click on the previous button, the page is also at the top even if you had scrolled on the page.
 
-I did this package because I was frustrated that the new react router (4) does not restore the scroll when I click on the back button of my browser. By default, the component execute window.scrollTo(0,0), if the url not exist in memory. It only stores the last 2 url.
+I did this package because I was frustrated that the new react router (4) does not restore the scroll when I click on the back button of my browser. By default, the component execute window.scrollTo(0,0), if the url not exist in memory.
 
 only work with react and react router v4
 
@@ -21,7 +21,7 @@ only work with react and react router v4
 
  * install package
 
-         $ npm i -S react-router-scroll-memory
+    $ npm i -S react-router-scroll-memory
 
 
 
