@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { cleanOldUrl, isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
+import { isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
 
 type Props = {
   location: Object,

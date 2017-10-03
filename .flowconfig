@@ -1,5 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/__tests__/.*
+<PROJECT_ROOT>/exemple/*
 <PROJECT_ROOT>/node_modules/babel-plugin-flow-react-proptypes/*.
 [include]
 <PROJECT_ROOT>/src/*
