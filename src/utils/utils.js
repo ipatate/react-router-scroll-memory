@@ -1,4 +1,5 @@
 // @flow
+type PageInfo = { pathname: string, scroll: number };
 /**
  * search object and return object find or undefined
  * @param {array} url
@@ -11,28 +12,27 @@ export const getPage = (url: Array<PageInfo> = [], path: string): ?PageInfo => {
 };
 
 /**
-       * search object and return index or -1
-       * @param {array} url
-       * @param {string} path
-       * @return {number}
-       */
-export const getIndexPage = (url: Array<PageInfo> = [], path: string): number =>
-  url.map(x => x.pathname).indexOf(path);
+ * search object and return index or -1
+ * @param {array} url
+ * @param {string} path
+ * @return {number}
+ */
+export const getIndexPage = (url: Array<PageInfo> = [], path: string): number => url.map(x => x.pathname).indexOf(path);
 
 /**
-       * save path and scroll in url array
-       * @param {array} url
-       * @param {string} pathname
-       * @param {number} scroll
-       * @return {array}
-       */
+ * save path and scroll in url array
+ * @param {array} url
+ * @param {string} pathname
+ * @param {number} scroll
+ * @return {array}
+ */
 export const saveUrl = (url: Array<PageInfo>, pathname: string = '', scroll: number = 0): Array<PageInfo> => {
   const u = Array.isArray(url) ? url : [];
   // if path exist in array replace scroll value
   const page = getIndexPage(u, pathname);
   if (page > -1) {
-      u[page].scroll = scroll;
-      return u;
+    u[page].scroll = scroll;
+    return u;
   }
   // save actual url
   u.push({ pathname, scroll });
@@ -40,9 +40,9 @@ export const saveUrl = (url: Array<PageInfo>, pathname: string = '', scroll: num
 };
 
 /**
-       * get the scroll of page
-       * @return {number}
-       */
+ * get the scroll of page
+ * @return {number}
+ */
 export const getScrollPage = (): number => {
   let docScrollTop = 0;
   if (document.documentElement && document.documentElement !== null) {
@@ -52,17 +52,17 @@ export const getScrollPage = (): number => {
 };
 
 /**
-       * scroll to y number
-       * @param {number} scrollnumber
-       * @return {void}
-       */
+ * scroll to y number
+ * @param {number} scrollnumber
+ * @return {void}
+ */
 export const scrollTo = (scrollnumber: number = 0): number =>
   window.requestAnimationFrame(() => {
     window.scrollTo(0, scrollnumber);
   });
 
 /**
-     * verif if window exist
-     * @return boolean
-     */
+ * verif if window exist
+ * @return boolean
+ */
 export const isBrowser = (): boolean => typeof window !== 'undefined';

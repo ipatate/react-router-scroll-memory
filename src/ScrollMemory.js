@@ -6,7 +6,7 @@ import { isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/ut
 type Props = {
   location: Object,
 };
-const limit = 20;
+
 class ScrollMemory extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
