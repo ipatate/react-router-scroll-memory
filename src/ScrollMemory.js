@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { isBrowser, getPage, saveUrl, getScrollPage, scrollTo } from './utils/utils';
+import { isBrowser, getPage, saveUrl, getScrollPage, getScrollElement, scrollTo, scrollToElement } from './utils/utils';
 
 type Props = {
   location: Object,
+  elementID: string,
 };
 
 class ScrollMemory extends React.Component<Props> {
@@ -26,10 +27,10 @@ class ScrollMemory extends React.Component<Props> {
     // next is target location of the link
     const next = nextProps.location;
     const locationChanged = next !== actual;
-    // get scroll of the page before change location
-    const scroll = getScrollPage();
+    // get scroll of the page or the element before change location
+    const scroll = this.props.elementID ? getScrollElement(this.props.elementID) : getScrollPage();
     if (locationChanged) {
-      this.requestID = scrollTo(0);
+      this.requestID = this.props.elementID ? scrollToElement(0, this.props.elementID) : scrollTo(0);
       this.url = saveUrl(this.url, actual.pathname, scroll);
     }
   }
@@ -52,7 +53,7 @@ class ScrollMemory extends React.Component<Props> {
       this.requestID = 0;
     }
     if (nextFind) {
-      scrollTo(nextFind.scroll);
+      this.props.elementID ? scrollToElement(nextFind.scroll, this.props.elementID) : scrollTo(nextFind.scroll);
     }
   }
   detectPop: () => void;
