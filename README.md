@@ -40,6 +40,10 @@ import ScrollMemory from 'react-router-scroll-memory';
   </BrowserRouter>
 ```
 
+### New Feature
+
+If you use your app inside a element, you can use props "elementID" for memorise scroll position of your element instead body scroll.
+
 #### Tested on Browser:
 
 * Chrome
