@@ -20,7 +20,7 @@ const ListEleme = styled.li`
   }
 `;
 
-export default () => 
+export default () =>
   <div>
   <nav>
     <Link to="/">Home</Link>
@@ -42,6 +42,9 @@ export default () =>
       <ListEleme><Link to="/detail/12">Element 12</Link></ListEleme>
       <ListEleme><Link to="/detail/13">Element 13</Link></ListEleme>
       <ListEleme><Link to="/detail/14">Element 14</Link></ListEleme>
+      <ListEleme><Link to="/detail/14#test">Element 14 with hash</Link></ListEleme>
+      <ListEleme><Link to="/detail/14?some=search-string">Element 14 with search </Link></ListEleme>
+      <ListEleme><Link to="/detail/14?some=search-string#test">Element 14 with hash and search</Link></ListEleme>
       <ListEleme><Link to="/detail/15">Element 15</Link></ListEleme>
       <ListEleme><Link to="/detail/16">Element 16</Link></ListEleme>
       <ListEleme><Link to="/detail/17">Element 17</Link></ListEleme>

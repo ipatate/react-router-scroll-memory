@@ -26,12 +26,16 @@ class ScrollMemory extends React.Component<Props> {
     const actual = this.props.location;
     // next is target location of the link
     const next = nextProps.location;
-    const locationChanged = next !== actual;
+    // if hash => let the normal operation of the browser
+    const locationChanged = (next.pathname !== actual.pathname || next.search !== actual.search) && next.hash === '';
+
     // get scroll of the page or the element before change location
     const scroll = this.props.elementID ? getScrollElement(this.props.elementID) : getScrollPage();
     if (locationChanged) {
       this.requestID = this.props.elementID ? scrollToElement(0, this.props.elementID) : scrollTo(0);
-      this.url = saveUrl(this.url, actual.pathname, scroll);
+      // save path complete with hash
+      const path = `${actual.pathname}${actual.search}${actual.hash}`;
+      this.url = saveUrl(this.url, path, scroll);
     }
   }
   componentWillUnmount(): void {

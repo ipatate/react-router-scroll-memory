@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { injectGlobal } from 'styled-components';
-import ScrollMemory from 'react-router-scroll-memory';
+// import ScrollMemory from 'react-router-scroll-memory';
+import ScrollMemory from './dist/ScrollMemory.min.js';
 import Home from './Home';
 import Details from './Details';
 import About from './About';
