@@ -74,7 +74,7 @@ export const scrollTo = (scrollnumber: number = 0): number =>
     window.scrollTo(0, scrollnumber);
   });
 
-  /**
+/**
  * scroll to y number inside an element
  * @param {number} scrollnumber
  * @return {void}
@@ -82,11 +82,9 @@ export const scrollTo = (scrollnumber: number = 0): number =>
 export const scrollToElement = (scrollnumber: number = 0, elementId: string): number => {
   const element = document.getElementById(elementId);
   if (element) {
-    element.scroll({
-      top: scrollnumber,
-    });
+    element.scrollTop = scrollnumber;
   }
-}
+};
 
 /**
  * verif if window exist
