@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { injectGlobal } from 'styled-components';
-import ScrollMemory from 'scroll-router-scroll-memory';
+import { createGlobalStyle } from 'styled-components';
+import ScrollMemory from 'react-router-scroll-memory';
 import Home from './Home';
 import Details from './Details';
 import About from './About';
 // eslint-disable-next-line
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   body {
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
@@ -22,6 +22,7 @@ injectGlobal`
 
 const App = () => (
   <div>
+    <GlobalStyle />
     <ScrollMemory />
     <Switch>
       <Route exact path="/" component={Home} />
