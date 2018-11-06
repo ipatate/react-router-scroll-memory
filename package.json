@@ -7,7 +7,11 @@
     "test": "jest",
     "flow": "node_modules/.bin/flow",
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src",
+    "format": "prettier --write \"**/*.+(js|jsx||json|yml|yaml|css|scss|ts|tsx|graphql|vue|mjs)\" ",
+    "validate": "npm run lint && npm run test && npm run flow",
+    "precommit": "lint-staged && npm run test && npm run flow"
   },
   "repository": {
     "type": "git",
