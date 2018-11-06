@@ -1,19 +1,20 @@
 {
-  "extends": ["plugin:flowtype/recommended", "airbnb", "prettier", "prettier/react"],
-  "plugins": ["flowtype", "prettier"],
   "parser": "babel-eslint",
+  "plugins": ["flowtype", "jest"],
+  "extends": [
+    "eslint:recommended",
+    "eslint-config-prettier",
+    "plugin:flowtype/recommended",
+    "plugin:jest/recommended",
+    "prettier/react"
+  ],
+  "rules": {},
   "parserOptions": {
-    "ecmaVersion": 2016,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-  },
-  "rules": {
-    "react/prop-types": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "import/no-named-as-default": 0,
-    "jsx-a11y/href-no-hash": 0
   },
   "env": {
     "browser": true,
