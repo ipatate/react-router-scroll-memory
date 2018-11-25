@@ -3,12 +3,12 @@
   "description": "",
   "homepage": "https://stackblitz.com/edit/simple-react-app-with-router",
   "dependencies": {
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
-    "react-router-dom": "4.1.2",
-    "react-router-scroll-memory": "^1.0.0",
-    "react-scripts": "1.0.10",
-    "styled-components": "2.1.2"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
+    "react-router-scroll-memory": "^2.0.0",
+    "react-scripts": "2.1.1",
+    "styled-components": "4.0.3"
   },
   "version": "0.1.0",
   "private": true,
@@ -17,5 +17,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {}
 }

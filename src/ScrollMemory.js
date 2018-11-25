@@ -1,69 +1,93 @@
 // @flow
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { isBrowser, getPage, saveUrl, getScrollPage, getScrollElement, scrollTo, scrollToElement } from './utils/utils';
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
+import {
+  isBrowser,
+  getScrollPage,
+  getScrollElement,
+  scrollTo,
+  scrollToElement
+} from "./utils/utils";
 
-type Props = {
+type ScrollProps = {
   location: Object,
-  elementID: string,
+  elementID?: string
 };
 
-class ScrollMemory extends React.Component<Props> {
-  constructor(props: Props) {
+class ScrollMemory extends Component<ScrollProps> {
+  detectPop: () => void;
+  url: Map<string, number>;
+
+  constructor(props: ScrollProps) {
     super(props);
+    // add event for click on previous or next browser button
     this.detectPop = this.detectPop.bind(this);
-    // stock all pathname with scroll associate
-    this.url = [];
-    this.requestID = 0;
+    // stock location key with scroll associate
+    this.url = new Map();
   }
+
   componentDidMount(): void {
-    if (!isBrowser()) return;
-    window.addEventListener('popstate', this.detectPop);
+    window.addEventListener("popstate", this.detectPop);
   }
-  componentWillReceiveProps(nextProps: Object): void {
-    if (!isBrowser()) return;
-    // actual is previous location before click on link
-    const actual = this.props.location;
-    // next is target location of the link
+
+  componentWillUnmount(): void {
+    window.removeEventListener("popstate", this.detectPop);
+  }
+
+  shouldComponentUpdate(nextProps: ScrollProps): boolean {
+    if (!isBrowser()) return false;
+    const { location } = this.props;
+    // location before change url
+    const actual = location;
+    // location after change url
     const next = nextProps.location;
+    // the first page has not key, set "enter" for key
+    const key = actual.key || "enter";
+
     // if hash => let the normal operation of the browser
-    const locationChanged = (next.pathname !== actual.pathname || next.search !== actual.search) && next.hash === '';
+    const locationChanged = (next.pathname !== actual.pathname ||
+      next.search !== actual.search) &&
+      next.hash === "";
 
     // get scroll of the page or the element before change location
-    const scroll = this.props.elementID ? getScrollElement(this.props.elementID) : getScrollPage();
+    const scroll = this.props.elementID
+      ? getScrollElement(this.props.elementID)
+      : getScrollPage();
+
     if (locationChanged) {
-      this.requestID = this.props.elementID ? scrollToElement(0, this.props.elementID) : scrollTo(0);
-      // save path complete with hash
-      const path = `${actual.pathname}${actual.search}${actual.hash}`;
-      this.url = saveUrl(this.url, path, scroll);
+      // pass page or element scroll to top
+      this.props.elementID
+        ? scrollToElement(0, this.props.elementID)
+        : scrollTo(0);
+      // save scroll with key location
+      this.url.set(key, scroll);
     }
+    // never render
+    return false;
   }
-  componentWillUnmount(): void {
-    if (!isBrowser()) return;
-    window.removeEventListener('popstate', this.detectPop);
-  }
+
   /**
    * callback for event popstate
    *
    * @memberof ScrollMemory
    */
-  detectPop(): void {
+  detectPop(location: Object): void {
     if (!isBrowser()) return;
-    const pathname = window.location.pathname;
-    const nextFind = getPage(this.url, pathname);
-    if (this.requestID > 0) {
-      // cancel scrollTo call by componentWillReceiveProps
-      window.cancelAnimationFrame(this.requestID);
-      this.requestID = 0;
-    }
+    const { state } = location;
+    // key or enter page
+    const key = state ? state.key : "enter";
+    // get the next for scroll position
+    const nextFind = this.url.get(key);
+
+    // if find in url map => scroll to position
     if (nextFind) {
-      this.props.elementID ? scrollToElement(nextFind.scroll, this.props.elementID) : scrollTo(nextFind.scroll);
+      this.props.elementID
+        ? scrollToElement(nextFind, this.props.elementID)
+        : scrollTo(nextFind);
     }
   }
-  detectPop: () => void;
-  requestID: number;
-  url: Array<Object>;
-  render(): null {
+
+  render() {
     return null;
   }
 }

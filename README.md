@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/ipatate/react-router-scroll-memory.svg?branch=master)](https://travis-ci.org/ipatate/react-router-scroll-memory)
 
-## For Version 2.0.0 download beta version with @beta flag
-
 ### For React Router V4 only. React component to keep the scroll of the page and to restore it if the user clicks on the previous button of its browser
 
 The React Router V4 has no concept of router middlewares. The package react-router-scroll not work with React Router V4.
