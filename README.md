@@ -2,7 +2,7 @@
 
 ### For React Router V4 only. React component to keep the scroll of the page and to restore it if the user clicks on the previous button of its browser
 
-The React Router V4 has no concept of router middlewares. The package react-router-scroll not work with React Router V4.
+Apparently, it work with react router v5. I haven't test all feature. But it work in the exemple with the v5.
 
 You have solution in this page [https://reacttraining.com/react-router/web/guides/scroll-restoration](https://reacttraining.com/react-router/web/guides/scroll-restoration) for just scrolling to top on navigation on every transition. But if you click on the previous button, the page is also at the top even if you had scrolled on the page.
 
