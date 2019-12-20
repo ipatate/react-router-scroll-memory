@@ -8,7 +8,7 @@
     {
       "src": "exemple/package.json",
       "use": "@now/static-build",
-      "config": { "distDir": "public" }
+      "config": { "distDir": "build" }
     }
   ],
   "routes": [
