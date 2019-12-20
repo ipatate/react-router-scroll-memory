@@ -8,8 +8,8 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "exemple/build/$1" },
+    { "src": "/(.*)", "dest": "exemple/$1" },
     { "handle": "filesystem" },
-    { "src": "/.*", "status": 404, "dest": "exemple/build/404.html" }
+    { "src": "/.*", "status": 404, "dest": "exemple/404.html" }
   ]
 }
