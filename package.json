@@ -67,7 +67,7 @@
     "react-test-renderer": "^16.6.0",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.0"
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "browserslist": [
     "last 2 version",
