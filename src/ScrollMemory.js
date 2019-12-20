@@ -75,7 +75,7 @@ class ScrollMemory extends Component<ScrollProps> {
     if (!isBrowser()) return;
     const { state } = location;
     // key or enter page
-    const key = state ? state.key : "enter";
+    const key = state && state.key ? state.key : "enter";
     // get the next for scroll position
     const nextFind = this.url.get(key);
 
