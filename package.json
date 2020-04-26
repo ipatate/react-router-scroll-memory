@@ -23,6 +23,7 @@
     "scroll",
     "history"
   ],
+  "files":["dist"],
   "author": "Faramaz Patrick",
   "license": "ISC",
   "bugs": {
