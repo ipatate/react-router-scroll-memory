@@ -40,7 +40,10 @@ export const scrollTo = (scrollnumber: number = 0): number =>
  * @param {number} scrollnumber
  * @return {void}
  */
-export const scrollToElement = (scrollnumber: number = 0, elementId: string): void => {
+export const scrollToElement = (
+  scrollnumber: number = 0,
+  elementId: string
+): void => {
   const element = document.getElementById(elementId);
   if (element) {
     element.scrollTop = scrollnumber;
@@ -51,4 +54,4 @@ export const scrollToElement = (scrollnumber: number = 0, elementId: string): vo
  * verif if window exist
  * @return boolean
  */
-export const isBrowser = (): boolean => typeof window !== 'undefined';
+export const isBrowser = (): boolean => typeof window !== "undefined";

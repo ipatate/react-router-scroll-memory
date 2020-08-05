@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "exemple/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "exemple/$1" },
+    { "handle": "filesystem" },
+    { "src": "/.*", "status": 404, "dest": "exemple/404.html" }
+  ]
+}

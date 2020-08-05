@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["flowtype", "jest"],
+  "plugins": ["flowtype", "jest", "react"],
   "extends": [
     "eslint:recommended",
     "eslint-config-prettier",

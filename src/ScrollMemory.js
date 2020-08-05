@@ -1,7 +1,13 @@
 // @flow
-import { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { isBrowser, getScrollPage, getScrollElement, scrollTo, scrollToElement } from './utils/utils';
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
+import {
+  isBrowser,
+  getScrollPage,
+  getScrollElement,
+  scrollTo,
+  scrollToElement
+} from "./utils/utils";
 
 type ScrollProps = {
   location: Object,
@@ -21,11 +27,11 @@ class ScrollMemory extends Component<ScrollProps> {
   }
 
   componentDidMount(): void {
-    window.addEventListener('popstate', this.detectPop);
+    window.addEventListener("popstate", this.detectPop);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('popstate', this.detectPop);
+    window.removeEventListener("popstate", this.detectPop);
   }
 
   shouldComponentUpdate(nextProps: ScrollProps): boolean {
@@ -36,17 +42,23 @@ class ScrollMemory extends Component<ScrollProps> {
     // location after change url
     const next = nextProps.location;
     // the first page has not key, set "enter" for key
-    const key = actual.key || 'enter';
+    const key = actual.key || "enter";
 
     // if hash => let the normal operation of the browser
-    const locationChanged = (next.pathname !== actual.pathname || next.search !== actual.search) && next.hash === '';
+    const locationChanged = (next.pathname !== actual.pathname ||
+      next.search !== actual.search) &&
+      next.hash === "";
 
     // get scroll of the page or the element before change location
-    const scroll = this.props.elementID ? getScrollElement(this.props.elementID) : getScrollPage();
+    const scroll = this.props.elementID
+      ? getScrollElement(this.props.elementID)
+      : getScrollPage();
 
     if (locationChanged) {
       // pass page or element scroll to top
-      this.props.elementID ? scrollToElement(0, this.props.elementID) : scrollTo(0);
+      this.props.elementID
+        ? scrollToElement(0, this.props.elementID)
+        : scrollTo(0);
       // save scroll with key location
       this.url.set(key, scroll);
     }
@@ -63,13 +75,15 @@ class ScrollMemory extends Component<ScrollProps> {
     if (!isBrowser()) return;
     const { state } = location;
     // key or enter page
-    const key = state ? state.key : 'enter';
+    const key = state && state.key ? state.key : "enter";
     // get the next for scroll position
     const nextFind = this.url.get(key);
 
     // if find in url map => scroll to position
     if (nextFind) {
-      this.props.elementID ? scrollToElement(nextFind, this.props.elementID) : scrollTo(nextFind);
+      this.props.elementID
+        ? scrollToElement(nextFind, this.props.elementID)
+        : scrollTo(nextFind);
     }
   }
 
