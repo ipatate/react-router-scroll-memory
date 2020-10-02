@@ -6,12 +6,13 @@ import {
   getScrollPage,
   getScrollElement,
   scrollTo,
-  scrollToElement
+  scrollToElement,
 } from "./utils/utils";
 
 type ScrollProps = {
   location: Object,
-  elementID?: string
+  elementID?: string,
+  timeout?: number,
 };
 
 class ScrollMemory extends Component<ScrollProps> {
@@ -45,8 +46,8 @@ class ScrollMemory extends Component<ScrollProps> {
     const key = actual.key || "enter";
 
     // if hash => let the normal operation of the browser
-    const locationChanged = (next.pathname !== actual.pathname ||
-      next.search !== actual.search) &&
+    const locationChanged =
+      (next.pathname !== actual.pathname || next.search !== actual.search) &&
       next.hash === "";
 
     // get scroll of the page or the element before change location
@@ -81,9 +82,18 @@ class ScrollMemory extends Component<ScrollProps> {
 
     // if find in url map => scroll to position
     if (nextFind) {
-      this.props.elementID
-        ? scrollToElement(nextFind, this.props.elementID)
-        : scrollTo(nextFind);
+      //if timeout is set, apply it
+      if (this.props.timeout !== undefined && this.props.timeout !== null) {
+        setTimeout(() => {
+          this.props.elementID
+            ? scrollToElement(nextFind, this.props.elementID)
+            : scrollTo(nextFind);
+        }, this.props.timeout);
+      } else {
+        this.props.elementID
+          ? scrollToElement(nextFind, this.props.elementID)
+          : scrollTo(nextFind);
+      }
     }
   }
 
